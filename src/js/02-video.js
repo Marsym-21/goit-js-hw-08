@@ -7,15 +7,31 @@ const player = new Player(iframe);
 
 const onPlay = data => {
   const time = data.seconds;
-  getVideoplayerCurrentTime(time);
+  getCurrentTimeAddLocalStorage(time);
 };
 
-function getVideoplayerCurrentTime(second) {
+/* function getCurrentTimeAddLocalStorage(second) {
   localStorage.setItem('videoplayer-current-time', `${second}`);
-
-  console.log(localStorage.getItem('videoplayer-current-time'));
-}
+  needSecond = localStorage.getItem('videoplayer-current-time');
+  console.log(needSecond);
+} */
 
 player.on('timeupdate', onPlay);
 
-player.setCurrentTime(0.0);
+player
+  .setCurrentTime(0.0)
+  .then(
+    (getCurrentTimeAddLocalStorage = second => {
+      localStorage.setItem('videoplayer-current-time', `${second}`);
+
+      return (second = localStorage.getItem('videoplayer-current-time'));
+    })
+  )
+  .catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        break;
+      default:
+        break;
+    }
+  });
