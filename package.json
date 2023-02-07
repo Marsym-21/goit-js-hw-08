@@ -23,6 +23,7 @@
     "simplelightbox": "^2.12.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
     "@parcel/transformer-sass": "^2.6.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
