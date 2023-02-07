@@ -1,12 +1,21 @@
 import Player from '@vimeo/player';
 
-let player = new Player('handstick', {
-  id: 'vimeo - player',
-  width: 640,
-});
+const throttle = require('lodash.throttle');
 
-player.on('play', onPlay);
+const iframe = document.querySelector('#vimeo-player');
+const player = new Player(iframe);
 
-const onPlay = function (data) {
-  console.log(data);
+const onPlay = data => {
+  const time = data.seconds;
+  getVideoplayerCurrentTime(time);
 };
+
+function getVideoplayerCurrentTime(second) {
+  localStorage.setItem('videoplayer-current-time', `${second}`);
+
+  console.log(localStorage.getItem('videoplayer-current-time'));
+}
+
+player.on('timeupdate', onPlay);
+
+player.setCurrentTime(0.0);
