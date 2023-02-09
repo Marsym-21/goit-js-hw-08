@@ -2,24 +2,17 @@ import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 const formData = {};
+let name;
+let value;
+populateText();
 
 form.addEventListener(
   'input',
   throttle(event => {
-    formData[event.target.name] = event.target.value;
+    name = event.target.name;
+    value = event.target.value;
+    formData[name] = value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    const newFormData = JSON.parse(savedData);
-
-    if (savedData) {
-      console.log('Є запис');
-      for (key in newFormData) {
-        if (key === event.target.name) {
-          event.target.value = newFormData[key];
-        }
-      }
-    }
   }, 500)
 );
 
@@ -29,3 +22,16 @@ form.addEventListener('submit', event => {
   console.log(formData);
   event.target.reset();
 });
+
+function populateText() {
+  const savedData = localStorage.getItem(STORAGE_KEY);
+  const newFormData = JSON.parse(savedData);
+  if (savedData) {
+    console.log('Є запис');
+    for (key in newFormData) {
+      if (key === name) {
+        value = newFormData[key];
+      }
+    }
+  }
+}
