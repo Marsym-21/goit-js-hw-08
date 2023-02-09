@@ -7,15 +7,14 @@ let value;
 populateText();
 const formData = {};
 
-form.addEventListener(
-  'input',
-  throttle(event => {
-    name = event.target.name;
-    value = event.target.value;
-    formData[name] = value;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-  }, 500)
-);
+form.addEventListener('input', throttle(checkedInputValue, 500));
+
+function checkedInputValue(event) {
+  name = event.target.name;
+  value = event.target.value;
+  formData[name] = value;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+}
 
 form.addEventListener('submit', event => {
   event.preventDefault();
