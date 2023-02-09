@@ -1,10 +1,11 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
-const formData = {};
+
 let name;
 let value;
 populateText();
+const formData = {};
 
 form.addEventListener(
   'input',
