@@ -29,7 +29,7 @@ function populateText() {
   const newFormData = JSON.parse(savedData);
   if (savedData) {
     console.log('Є запис');
-    for (key in newFormData) {
+    for (const key in newFormData) {
       if (key === name) {
         value = newFormData[key];
       }
