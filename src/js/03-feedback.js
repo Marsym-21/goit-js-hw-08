@@ -9,18 +9,17 @@ form.addEventListener('input', throttle(checkedInputValue, 500));
 
 function checkedInputValue(event) {
   const { email, message } = form.elements;
-
   const name = event.target.name;
   const value = event.target.value;
   formData[name] = value;
-  console.log(formData);
 
   if (email.value !== '') {
-    console.log(email.value);
+    formData.email = email.value;
   }
   if (message.value !== '') {
-    console.log(message.value);
+    formData.message = message.value;
   }
+  console.log(formData);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
