@@ -6,7 +6,7 @@ const player = new Player(iframe);
 rebootPage();
 
 const onPlay = data => {
-  time = data.seconds;
+  const time = data.seconds;
   console.log(getCurrentTimeAddLocalStorage(time));
 };
 
