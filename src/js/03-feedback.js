@@ -19,7 +19,6 @@ function checkedInputValue(event) {
   if (message.value !== '') {
     formData.message = message.value;
   }
-  console.log(formData);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
@@ -27,6 +26,7 @@ function checkedInputValue(event) {
 form.addEventListener('submit', event => {
   event.preventDefault();
   const { email, message } = form.elements;
+  console.log(formData);
 
   if (email.value === '' || message.value === '') {
     return alert('Please fill in all the fields!');
